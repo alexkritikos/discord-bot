@@ -1,5 +1,6 @@
 import discord
 import os
+import random
 import search_grimes # search class
 from dotenv import load_dotenv
 
@@ -38,7 +39,6 @@ async def on_message(message):
     await message.channel.send(f'Master {message.author.name}, it is an honor to serve as your informant. On behalf of our Creators, I will do my best.')
 
   if message_content.startswith(f'{client.user.mention} $retrieve'):
-
     key_words, search_words = grimes_web.key_words_search_words(message_content)
     result_links = grimes_web.search(key_words)
     links = grimes_web.send_link(result_links, search_words)
@@ -48,6 +48,11 @@ async def on_message(message):
        await message.channel.send(link)
     else:
       await message.channel.send('No result message')
+
+  if message_content.startswith(f'{client.user.mention} $fact'):
+    facts = open('facts.txt').read().splitlines()
+    random_fact = random.choice(facts)
+    await message.channel.send(random_fact)
 
 # get bot token from .env and run client
 # has to be at the end of the file
