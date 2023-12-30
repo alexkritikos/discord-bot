@@ -35,6 +35,11 @@ async def on_message(message):
   # lower case message
   message_content = message.content.lower()  
   
+  if message_content.startswith(f'{client.user.mention} $help'):
+    with open('help.txt') as f:
+      help_text = "\n".join(line.strip() for line in f)
+    await message.channel.send(help_text)
+
   if message_content.startswith(f'{client.user.mention} $summon'):
     await message.channel.send(f'Master {message.author.name}, it is an honor to serve as your informant. On behalf of our Creators, I will do my best.')
 
@@ -47,7 +52,7 @@ async def on_message(message):
       for link in links:
        await message.channel.send(link)
     else:
-      await message.channel.send('No result message')
+      await message.channel.send(f'My apologies master {message.author.name}, I was not able to find anything. Please try a few cycles later.')
 
   if message_content.startswith(f'{client.user.mention} $fact'):
     facts = open('facts.txt').read().splitlines()
