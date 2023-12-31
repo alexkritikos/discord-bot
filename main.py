@@ -2,6 +2,7 @@ import discord
 import os
 import random
 import search_grimes # search class
+
 from dotenv import load_dotenv
 
 
@@ -39,6 +40,9 @@ async def on_message(message):
     with open('help.txt') as f:
       help_text = "\n".join(line.strip() for line in f)
     await message.channel.send(help_text)
+
+  if message_content.startswith(f'{client.user.mention} $real name'):
+    await message.channel.send("Claire Elise Boucher")
 
   if message_content.startswith(f'{client.user.mention} $summon'):
     await message.channel.send(f'Master {message.author.name}, it is an honor to serve as your informant. On behalf of our Creators, I will do my best.')
