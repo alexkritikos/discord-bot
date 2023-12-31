@@ -4,13 +4,16 @@ import random
 import search_grimes # search class
 
 from dotenv import load_dotenv
-
+from newsapi import NewsApiClient
+from datetime import date, timedelta
 
 intents = discord.Intents.default()
 intents.message_content = True
 
 # instantiate discord client 
 client = discord.Client(intents=intents)
+newsapi = NewsApiClient(api_key=os.getenv('NEWS_API_KEY'))
+
 
 # instantiate SearchGrimes class from search_grimes.py
 grimes_web = search_grimes.SearchGrimes()
@@ -48,15 +51,29 @@ async def on_message(message):
     await message.channel.send(f'Master {message.author.name}, it is an honor to serve as your informant. On behalf of our Creators, I will do my best.')
 
   if message_content.startswith(f'{client.user.mention} $retrieve'):
-    key_words, search_words = grimes_web.key_words_search_words(message_content)
-    result_links = grimes_web.search(key_words)
-    links = grimes_web.send_link(result_links, search_words)
-    
-    if len(links) > 0:
-      for link in links:
-       await message.channel.send(link)
+    news_results = newsapi.get_everything(q='grimes',
+                                          qintitle='grimes',
+                                          sources='business-insider',
+                                          from_param=date.today() - timedelta(days=int(os.getenv('NEWS_API_DAYS_BEFORE_CURRENT'))),
+                                          sort_by='publishedAt',
+                                          page_size=int(os.getenv('NEWS_API_PAGE_SIZE')))  
+
+    if len(news_results) > 0:
+      for article in news_results['articles']:
+        await message.channel.send(article['url'])
     else:
       await message.channel.send(f'My apologies master {message.author.name}, I was not able to find anything. Please try a few cycles later.')
+
+
+    # key_words, search_words = grimes_web.key_words_search_words(message_content)
+    # result_links = grimes_web.search(key_words)
+    # links = grimes_web.send_link(result_links, search_words)
+    
+    # if len(links) > 0:
+    #   for link in links:
+    #    await message.channel.send(link)
+    # else:
+    #   await message.channel.send(f'My apologies master {message.author.name}, I was not able to find anything. Please try a few cycles later.')
 
   if message_content.startswith(f'{client.user.mention} $fact'):
     facts = open('facts.txt').read().splitlines()
