@@ -60,7 +60,8 @@ async def on_message(message):
 
     if len(news_results) > 0:
       for article in news_results['articles']:
-        await message.channel.send(article['url'])
+        if "grimes" in article['title'].lower():
+          await message.channel.send(article['url'])
     else:
       await message.channel.send(f'My apologies master {message.author.name}, I was not able to find anything. Please try a few cycles later.')
 
