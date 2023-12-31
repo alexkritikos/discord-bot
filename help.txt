@@ -3,3 +3,4 @@ $help -> Shows the message you are looking at right now
 $summon -> Feel free to summon me whenever you like
 $fact -> I will tell you a random fact about our beloved Grimes
 $retrieve -> I will give you the latest news on c
+$real_name -> Shows Grimes' real name
