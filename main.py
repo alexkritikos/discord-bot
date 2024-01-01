@@ -9,6 +9,7 @@ from datetime import date, timedelta
 
 intents = discord.Intents.default()
 intents.message_content = True
+intents.members = True
 
 # instantiate discord client 
 client = discord.Client(intents=intents)
@@ -28,6 +29,11 @@ async def on_ready():
   print(f'{client.user} is now online!')
 
 @client.event
+async def on_member_join(member):
+  channel = client.get_channel(1140325411126005903)
+  await channel.send()
+
+@client.event
 async def on_message(message): 
   # make sure bot doesn't respond to it's own messages to avoid infinite loop
   if message.author == client.user:
@@ -35,10 +41,15 @@ async def on_message(message):
   # lower case message
   message_content = message.content.lower()  
   
+  if message_content.startswith(f'{client.user.mention} $test'):
+    with open('welcome.txt') as file:
+      welcome_text = "\n".join(line.strip() for line in file)
+    message.channel.send(welcome_text)
+
   if message_content.startswith(f'{client.user.mention} $help'):
-    with open('help.txt') as f:
-      help_text = "\n".join(line.strip() for line in f)
-    await message.channel.send(help_text)
+    with open('help.txt') as file:
+      help_text = "\n".join(line.strip() for line in file)
+    message.channel.send(help_text)
 
   if message_content.startswith(f'{client.user.mention} $real_name'):
     await message.channel.send("Claire Elise Boucher")
