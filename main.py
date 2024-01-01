@@ -30,8 +30,10 @@ async def on_ready():
 
 @client.event
 async def on_member_join(member):
-  channel = client.get_channel(1140325411126005903)
-  await channel.send()
+  channel = client.get_channel(1140325411126005903) # ίντριγκα
+  with open('welcome.txt') as file:
+    welcome_text = "\n".join(line.strip() for line in file)
+  await channel.send(welcome_text)
 
 @client.event
 async def on_message(message): 
