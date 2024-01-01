@@ -31,9 +31,10 @@ async def on_ready():
 @client.event
 async def on_member_join(member):
   channel = client.get_channel(1140325411126005903) # ίντριγκα
-  with open('welcome.txt') as file:
-    welcome_text = "\n".join(line.strip() for line in file)
-  await channel.send(welcome_text)
+  await channel.send(f"{member.mention} Χαίρετε χαίρετε! Τι καιρό έχει εκεί; Καλώς ήρθες στα Κουτοκομεία, το ανερχόμενο καφενείο του Discord. Από φορτηγατζήδες μέχρι σκληροπυρηνικούς MMO παίχτες, εδώ μέσα όλοι οι καλοί χωράνε.\nΑν δεν είσαι γενικός αρχηγός σε ομάδα ποδοσφαίρου, θα θέλαμε να τσεκάρεις τους κανόνες μας στο κανάλι server-rules. Κρατάει λιγότερο από 5 λεπτά και είναι ανώδυνο.\nΜόλις τελειώσεις βάλε μικρόφωνο και έλα να τα πούμε στο κανάλι παναγίες 24/7.\nΕπίσης είμαι bot, οπότε αν μου ζητήσεις γνώμη για Stamshot και δεν σου απαντάω σημαίνει ότι κάποιος δεν με έχει εκπαιδεύσει αρκετά (γκούχου γκούχου).\nΣε αφήνω γιατί έχω μια σημαντική αποστολή. Καλή διασκέδαση!")
+  # with open('welcome.txt') as file:
+  #   welcome_text = "\n".join(line.strip() for line in file)
+  # await channel.send(welcome_text)
 
 @client.event
 async def on_message(message): 
