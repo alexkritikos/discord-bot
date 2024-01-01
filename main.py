@@ -44,12 +44,12 @@ async def on_message(message):
   if message_content.startswith(f'{client.user.mention} $test'):
     with open('welcome.txt') as file:
       welcome_text = "\n".join(line.strip() for line in file)
-    message.channel.send(welcome_text)
+    await message.channel.send(welcome_text)
 
   if message_content.startswith(f'{client.user.mention} $help'):
     with open('help.txt') as file:
       help_text = "\n".join(line.strip() for line in file)
-    message.channel.send(help_text)
+    await message.channel.send(help_text)
 
   if message_content.startswith(f'{client.user.mention} $real_name'):
     await message.channel.send("Claire Elise Boucher")
