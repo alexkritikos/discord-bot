@@ -1,6 +1,7 @@
 import discord
 import os
 import random
+import utils
 
 from dotenv import load_dotenv
 from newsapi import NewsApiClient
@@ -13,7 +14,7 @@ intents.members = True
 
 # instantiate discord client 
 client = discord.Client(intents=intents)
-newsapi = NewsApiClient(api_key=os.getenv('NEWS_API_KEY'))
+newsapi = NewsApiClient(api_key=os.getenv("NEWS_API_KEY"))
 
 '''
 # If you are coding the bot on a local machine, use the python-dotenv package 
@@ -26,15 +27,12 @@ load_dotenv()
 # discord event to check when the bot is online 
 @client.event
 async def on_ready():
-  print(f'{client.user} is now online!')
+  print(f"{client.user} is now online!")
 
 @client.event
 async def on_member_join(member):
   channel = client.get_channel(1140325411126005903) # ίντριγκα
-  # await channel.send(f"{member.mention} Χαίρετε χαίρετε! Τι καιρό έχει εκεί; Καλώς ήρθες στα Κουτοκομεία, το ανερχόμενο καφενείο του Discord. Από φορτηγατζήδες μέχρι σκληροπυρηνικούς MMO παίχτες, εδώ μέσα όλοι οι καλοί χωράνε.\nΑν δεν είσαι γενικός αρχηγός σε ομάδα ποδοσφαίρου, θα θέλαμε να τσεκάρεις τους κανόνες μας στο κανάλι server-rules. Κρατάει λιγότερο από 5 λεπτά και είναι ανώδυνο.\nΜόλις τελειώσεις βάλε μικρόφωνο και έλα να τα πούμε στο κανάλι παναγίες 24/7.\nΕπίσης είμαι bot, οπότε αν μου ζητήσεις γνώμη για Stamshot και δεν σου απαντάω σημαίνει ότι κάποιος δεν με έχει εκπαιδεύσει αρκετά (γκούχου γκούχου).\nΣε αφήνω γιατί έχω μια σημαντική αποστολή. Καλή διασκέδαση!")
-  with open('welcome.txt') as file:
-    welcome_text = "\n".join(line.strip() for line in file)
-  await channel.send(f"{member.mention} " + welcome_text)
+  await channel.send(f"{member.mention} " + utils.to_multi_line_text("welcome.txt"))
 
 @client.event
 async def on_message(message): 
@@ -44,42 +42,35 @@ async def on_message(message):
   # lower case message
   message_content = message.content.lower()  
   
-  if message_content.startswith(f'{client.user.mention} $test'):
-    with open('welcome.txt') as file:
-      welcome_text = "\n".join(line.strip() for line in file)
-    await message.channel.send(welcome_text)
+  if message_content.startswith(f"{client.user.mention} $help"):
+    await message.channel.send(utils.to_multi_line_text("help.txt"))
 
-  if message_content.startswith(f'{client.user.mention} $help'):
-    with open('help.txt') as file:
-      help_text = "\n".join(line.strip() for line in file)
-    await message.channel.send(help_text)
-
-  if message_content.startswith(f'{client.user.mention} $real_name'):
+  if message_content.startswith(f"{client.user.mention} $real_name"):
     await message.channel.send("Claire Elise Boucher")
 
-  if message_content.startswith(f'{client.user.mention} $summon'):
-    await message.channel.send(f'Master {message.author.name}, it is an honor to serve as your informant. On behalf of our Creators, I will do my best.')
+  if message_content.startswith(f"{client.user.mention} $summon"):
+    await message.channel.send(f"Master {message.author.name}, it is an honor to serve as your informant. On behalf of our Creators, I will do my best.")
 
-  if message_content.startswith(f'{client.user.mention} $retrieve'):
-    news_results = newsapi.get_everything(q='grimes',
-                                          qintitle='grimes',
-                                          sources='business-insider',
-                                          from_param=date.today() - timedelta(days=int(os.getenv('NEWS_API_DAYS_BEFORE_CURRENT'))),
-                                          sort_by='publishedAt',
-                                          page_size=int(os.getenv('NEWS_API_PAGE_SIZE')))  
+  if message_content.startswith(f"{client.user.mention} $retrieve"):
+    news_results = newsapi.get_everything(q="grimes",
+                                          qintitle="grimes",
+                                          sources="business-insider",
+                                          from_param=date.today() - timedelta(days=int(os.getenv("NEWS_API_DAYS_BEFORE_CURRENT"))),
+                                          sort_by="publishedAt",
+                                          page_size=int(os.getenv("NEWS_API_PAGE_SIZE")))  
 
     if len(news_results) > 0:
-      for article in news_results['articles']:
-        if "grimes" in article['title'].lower():
-          await message.channel.send(article['url'])
+      for article in news_results["articles"]:
+        if "grimes" in article["title"].lower():
+          await message.channel.send(article["url"])
     else:
-      await message.channel.send(f'My apologies master {message.author.name}, I was not able to find anything. Please try a few cycles later.')
+      await message.channel.send(f"My apologies master {message.author.name}, I was not able to find anything. Please try a few cycles later.")
 
-  if message_content.startswith(f'{client.user.mention} $fact'):
-    facts = open('facts.txt').read().splitlines()
+  if message_content.startswith(f"{client.user.mention} $fact"):
+    facts = open("facts.txt").read().splitlines()
     random_fact = random.choice(facts)
     await message.channel.send(random_fact)
 
 # get bot token from .env and run client
 # has to be at the end of the file
-client.run(os.getenv('TOKEN'))
+client.run(os.getenv("TOKEN"))
