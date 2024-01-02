@@ -26,7 +26,7 @@ load_dotenv()
 
 load_dotenv()
 
-@bot.command(name="stalker_join")
+@bot.command(name="summon_stalker")
 async def join(ctx):
   if not ctx.message.author.voice:
     await ctx.send("{} is not connected to a voice channel".format(ctx.message.author.name))
@@ -35,7 +35,7 @@ async def join(ctx):
     channel = ctx.message.author.voice.channel
   await channel.connect()
   
-@bot.command(name="stalker_leave")
+@bot.command(name="summon_stalker")
 async def leave(ctx):
   voice_client = ctx.message.guild.voice_client
   if voice_client.is_connected():
