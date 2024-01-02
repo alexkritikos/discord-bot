@@ -13,7 +13,7 @@ intents.message_content = True
 intents.members = True
 
 # instantiate discord client 
-client = discord.Client(intents=intents)
+client = discord.Bot(intents=intents)
 newsapi = NewsApiClient(api_key=os.getenv("NEWS_API_KEY"))
 
 '''
@@ -23,6 +23,21 @@ load_dotenv()
 '''
 
 load_dotenv()
+
+@client.command(pass_context = True)
+async def join(ctx):
+  if ctx.author.voice:
+    channel = ctx.message.author.voice.channel
+    await channel.connect()
+  else:
+    await ctx.send("My apologies, but you must be in a voice channel so that I can join you.")
+
+@client.command(pass_context = True)
+async def leave(ctx):
+  if ctx.voice_client:
+    await ctx.guild.voice_client.disconnect()
+  else:
+    await ctx.send("I do not want to offend you, but you must be seeing hallucinations, because I am not in a voice channel at the moment.")
 
 # discord event to check when the bot is online 
 @client.event
