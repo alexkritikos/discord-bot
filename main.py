@@ -55,6 +55,8 @@ async def on_member_join(member):
 
 @bot.event
 async def on_message(message): 
+  # bot.process_commands(msg) is a couroutine that must be called here since we are overriding the on_message event
+  await bot.process_commands(message)
   # make sure bot doesn't respond to it's own messages to avoid infinite loop
   if message.author == bot.user:
       return  
