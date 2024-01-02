@@ -29,6 +29,7 @@ load_dotenv()
 
 @bot.command(name="summon_stalker")
 async def join(ctx):
+  print(ctx.command)
   if not ctx.message.author.voice:
     await ctx.send("My apologies master {}, but you must be in a voice channel so that I can join you.".format(ctx.message.author.name))
     return
