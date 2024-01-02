@@ -26,7 +26,7 @@ load_dotenv()
 
 load_dotenv()
 
-@client.command(name="join")
+@bot.command(name="join")
 async def join(ctx):
   if ctx.author.voice:
     channel = ctx.message.author.voice.channel
@@ -34,7 +34,7 @@ async def join(ctx):
   else:
     await ctx.send("My apologies, but you must be in a voice channel so that I can join you.")
 
-@client.command(name="leave")
+@bot.command(name="leave")
 async def leave(ctx):
   if ctx.voice_client:
     await ctx.guild.voice_client.disconnect()
