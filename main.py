@@ -29,7 +29,7 @@ load_dotenv()
 @bot.command(name="summon_stalker")
 async def join(ctx):
   if not ctx.message.author.voice:
-    await ctx.send("{} is not connected to a voice channel".format(ctx.message.author.name))
+    await ctx.send("My apologies master {}, but you must be in a voice channel so that I can join you.".format(ctx.message.author.name))
     return
   else:
     channel = ctx.message.author.voice.channel
@@ -41,7 +41,7 @@ async def leave(ctx):
   if voice_client.is_connected():
       await voice_client.disconnect()
   else:
-      await ctx.send("The bot is not connected to a voice channel.")
+      await ctx.send("I do not want to offend you master {}, but you must be seeing hallucinations, because I am not in a voice channel at the moment.".format(ctx.message.author.name))
 
 # discord event to check when the bot is online 
 @bot.event
