@@ -3,6 +3,7 @@ import os
 import random
 import utils
 
+from discord.ext import commands
 from dotenv import load_dotenv
 from newsapi import NewsApiClient
 from datetime import date, timedelta
@@ -14,6 +15,7 @@ intents.members = True
 
 # instantiate discord client 
 client = discord.Client(intents=intents)
+bot = commands.Bot(command_prefix='$',intents=intents)
 newsapi = NewsApiClient(api_key=os.getenv("NEWS_API_KEY"))
 
 '''
@@ -24,15 +26,15 @@ load_dotenv()
 
 load_dotenv()
 
-@client.command()
+@client.command(name="join")
 async def join(ctx):
   if ctx.author.voice:
-    channel = ctx.author.voice.channel
+    channel = ctx.message.author.voice.channel
     await channel.connect()
   else:
     await ctx.send("My apologies, but you must be in a voice channel so that I can join you.")
 
-@client.command()
+@client.command(name="leave")
 async def leave(ctx):
   if ctx.voice_client:
     await ctx.guild.voice_client.disconnect()
@@ -88,4 +90,4 @@ async def on_message(message):
 
 # get bot token from .env and run client
 # has to be at the end of the file
-client.run(os.getenv("TOKEN"))
+bot.run(os.getenv("TOKEN"))
