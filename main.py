@@ -15,7 +15,7 @@ intents.members = True
 
 # instantiate discord client 
 client = discord.Client(intents=intents)
-bot = commands.Bot(command_prefix='$',intents=intents)
+bot = commands.Bot(command_prefix='@GrimesStalker $',intents=intents)
 newsapi = NewsApiClient(api_key=os.getenv("NEWS_API_KEY"))
 
 '''
