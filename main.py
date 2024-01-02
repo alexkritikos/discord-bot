@@ -35,7 +35,7 @@ async def join(ctx):
     channel = ctx.message.author.voice.channel
   await channel.connect()
   
-@bot.command(name="summon_stalker")
+@bot.command(name="dismiss_stalker")
 async def leave(ctx):
   voice_client = ctx.message.guild.voice_client
   if voice_client.is_connected():
@@ -69,7 +69,7 @@ async def on_message(message):
   if message_content.startswith(f"{bot.user.mention} $real_name"):
     await message.channel.send("Claire Elise Boucher")
 
-  if message_content.startswith(f"{bot.user.mention} $summon"):
+  if message_content.startswith(f"{bot.user.mention} $greet"):
     await message.channel.send(f"Master {message.author.name}, it is an honor to serve as your informant. On behalf of our Creators, I will do my best.")
 
   if message_content.startswith(f"{bot.user.mention} $retrieve"):
