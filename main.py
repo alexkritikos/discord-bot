@@ -42,16 +42,16 @@ async def leave(ctx):
     await ctx.send("I do not want to offend you, but you must be seeing hallucinations, because I am not in a voice channel at the moment.")
 
 # discord event to check when the bot is online 
-@client.event
+@bot.event
 async def on_ready():
   print(f"{client.user} is now online!")
 
-@client.event
+@bot.event
 async def on_member_join(member):
   channel = client.get_channel(1140325411126005903) # ίντριγκα
   await channel.send(f"{member.mention} " + utils.to_multi_line_text("welcome.txt"))
 
-@client.event
+@bot.event
 async def on_message(message): 
   # make sure bot doesn't respond to it's own messages to avoid infinite loop
   if message.author == client.user:
