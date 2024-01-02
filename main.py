@@ -3,6 +3,7 @@ import os
 import random
 import utils
 
+from discord.ext import commands
 from dotenv import load_dotenv
 from newsapi import NewsApiClient
 from datetime import date, timedelta
@@ -14,7 +15,7 @@ intents.members = True
 
 # instantiate discord client 
 client = discord.Client(intents=intents)
-bot = discord.commands.Bot(command_prefix='$')
+bot = commands.Bot(command_prefix='$')
 newsapi = NewsApiClient(api_key=os.getenv("NEWS_API_KEY"))
 
 '''
