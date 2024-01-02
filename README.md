@@ -8,5 +8,7 @@ Discord bot for getting random facts and news about music artist Grimes and post
 
 ### Dependencies
 - discord
+- discord.py[voice]
 - python-dotenv
 - newsapi-python
+- ffmpeg

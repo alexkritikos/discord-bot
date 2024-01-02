@@ -4,6 +4,7 @@ import random
 import utils
 
 from discord.ext import commands
+from discord import FFmpegPCMAudio
 from dotenv import load_dotenv
 from newsapi import NewsApiClient
 from datetime import date, timedelta
@@ -33,7 +34,9 @@ async def join(ctx):
     return
   else:
     channel = ctx.message.author.voice.channel
-  await channel.connect()
+    voice = await channel.connect()
+    source = FFmpegPCMAudio("ΕΞΑΛΛΟΣ ΣΤΑΜΕΛΟΣ.wma")
+    player = voice.play(source)
   
 @bot.command(name="dismiss_stalker")
 async def leave(ctx):
