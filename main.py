@@ -14,6 +14,7 @@ intents.members = True
 
 # instantiate discord client 
 client = discord.Client(intents=intents)
+bot = discord.commands.Bot(command_prefix='$')
 newsapi = NewsApiClient(api_key=os.getenv("NEWS_API_KEY"))
 
 '''
@@ -24,7 +25,7 @@ load_dotenv()
 
 load_dotenv()
 
-@client.command(pass_context = True)
+@bot.command(pass_context = True)
 async def join(ctx):
   if ctx.author.voice:
     channel = ctx.message.author.voice.channel
@@ -32,7 +33,7 @@ async def join(ctx):
   else:
     await ctx.send("My apologies, but you must be in a voice channel so that I can join you.")
 
-@client.command(pass_context = True)
+@bot.command(pass_context = True)
 async def leave(ctx):
   if ctx.voice_client:
     await ctx.guild.voice_client.disconnect()
