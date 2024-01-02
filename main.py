@@ -13,7 +13,7 @@ intents.message_content = True
 intents.members = True
 
 # instantiate discord client 
-client = discord.Bot(intents=intents)
+client = discord.Client(intents=intents)
 newsapi = NewsApiClient(api_key=os.getenv("NEWS_API_KEY"))
 
 '''
