@@ -37,11 +37,10 @@ async def join(ctx):
   
 @bot.command(name="dismiss_stalker")
 async def leave(ctx):
-  voice_client = ctx.message.guild.voice_client
-  if voice_client.is_connected():
-      await voice_client.disconnect()
+  if ctx.voice_client:
+    await ctx.guild.voice_client.disconnect()
   else:
-      await ctx.send("I do not want to offend you master {}, but you must be seeing hallucinations, because I am not in a voice channel at the moment.".format(ctx.message.author.name))
+    await ctx.send("I do not want to offend you master {}, but you must be seeing hallucinations, because I am not in a voice channel at the moment.".format(ctx.message.author.name))
 
 # discord event to check when the bot is online 
 @bot.event
