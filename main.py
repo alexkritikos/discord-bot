@@ -36,7 +36,8 @@ async def join(ctx):
     channel = ctx.message.author.voice.channel
     voice = await channel.connect()
     # source = FFmpegPCMAudio("ΕΞΑΛΛΟΣ ΣΤΑΜΕΛΟΣ.wma")
-    source = FFmpegPCMAudio("TZELO'S HOBBIES.wma")
+    # source = FFmpegPCMAudio("TZELO'S HOBBIES.wma")
+    source = FFmpegPCMAudio("τζελο.wma")
     player = voice.play(source)
   
 @bot.command(name="dismiss_stalker")
