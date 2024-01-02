@@ -42,33 +42,33 @@ async def leave(ctx):
     await ctx.send("I do not want to offend you, but you must be seeing hallucinations, because I am not in a voice channel at the moment.")
 
 # discord event to check when the bot is online 
-@client.event
+@bot.event
 async def on_ready():
-  print(f"{client.user} is now online!")
+  print(f"{bot.user} is now online!")
 
-@client.event
+@bot.event
 async def on_member_join(member):
-  channel = client.get_channel(1140325411126005903) # ίντριγκα
-  await channel.send(f"{member.mention} " + utils.to_multi_line_text("welcome.txt"))
+  bot = bot.get_channel(1140325411126005903) # ίντριγκα
+  await bot.send(f"{member.mention} " + utils.to_multi_line_text("welcome.txt"))
 
-@client.event
+@bot.event
 async def on_message(message): 
   # make sure bot doesn't respond to it's own messages to avoid infinite loop
-  if message.author == client.user:
+  if message.author == bot.user:
       return  
   # lower case message
   message_content = message.content.lower()  
   
-  if message_content.startswith(f"{client.user.mention} $help"):
+  if message_content.startswith(f"{bot.user.mention} $help"):
     await message.channel.send(utils.to_multi_line_text("help.txt"))
 
-  if message_content.startswith(f"{client.user.mention} $real_name"):
+  if message_content.startswith(f"{bot.user.mention} $real_name"):
     await message.channel.send("Claire Elise Boucher")
 
-  if message_content.startswith(f"{client.user.mention} $summon"):
+  if message_content.startswith(f"{bot.user.mention} $summon"):
     await message.channel.send(f"Master {message.author.name}, it is an honor to serve as your informant. On behalf of our Creators, I will do my best.")
 
-  if message_content.startswith(f"{client.user.mention} $retrieve"):
+  if message_content.startswith(f"{bot.user.mention} $retrieve"):
     news_results = newsapi.get_everything(q="grimes",
                                           qintitle="grimes",
                                           sources="business-insider",
@@ -83,11 +83,11 @@ async def on_message(message):
     else:
       await message.channel.send(f"My apologies master {message.author.name}, I was not able to find anything. Please try a few cycles later.")
 
-  if message_content.startswith(f"{client.user.mention} $fact"):
+  if message_content.startswith(f"{bot.user.mention} $fact"):
     facts = open("facts.txt").read().splitlines()
     random_fact = random.choice(facts)
     await message.channel.send(random_fact)
 
 # get bot token from .env and run client
 # has to be at the end of the file
-client.run(os.getenv("TOKEN"))
+bot.run(os.getenv("TOKEN"))
