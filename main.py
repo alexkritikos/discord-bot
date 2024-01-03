@@ -35,9 +35,7 @@ async def play(ctx, arg):
   else:
     channel = ctx.message.author.voice.channel
     voice = await channel.connect()
-    # source = FFmpegPCMAudio("ΕΞΑΛΛΟΣ ΣΤΑΜΕΛΟΣ.wma")
-    # source = FFmpegPCMAudio("TZELO'S HOBBIES.wma")
-    source = FFmpegPCMAudio(arg)
+    source = FFmpegPCMAudio("audio/" + arg)
     player = voice.play(source)
 
 @bot.command(name="summon_stalker")
