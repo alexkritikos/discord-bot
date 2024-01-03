@@ -27,6 +27,13 @@ load_dotenv()
 
 load_dotenv()
 
+@bot.command(name="list_audio")
+async def list_audio(ctx):
+  await ctx.send("Here is a list of the available audio files:\n\t" 
+                 + "\n\t".join(os.listdir("./audio")) 
+                 + "\n To play a file, copy-paste a file name from above and type:\n"
+                 + "$play <song-name>")
+
 @bot.command()
 async def play(ctx, arg):
   if not ctx.message.author.voice:
@@ -36,22 +43,8 @@ async def play(ctx, arg):
     channel = ctx.message.author.voice.channel
     voice = await channel.connect()
     source = FFmpegPCMAudio("audio/" + arg)
-    player = voice.play(source)
+    voice.play(source)
 
-@bot.command(name="summon_stalker")
-async def join(ctx):
-  print(ctx.command)
-  if not ctx.message.author.voice:
-    await ctx.send("My apologies master {}, but you must be in a voice channel so that I can join you.".format(ctx.message.author.name))
-    return
-  else:
-    channel = ctx.message.author.voice.channel
-    voice = await channel.connect()
-    # source = FFmpegPCMAudio("ΕΞΑΛΛΟΣ ΣΤΑΜΕΛΟΣ.wma")
-    # source = FFmpegPCMAudio("TZELO'S HOBBIES.wma")
-    source = FFmpegPCMAudio("τζελο.wma")
-    player = voice.play(source)
-  
 @bot.command(name="dismiss_stalker")
 async def leave(ctx):
   if ctx.voice_client:
