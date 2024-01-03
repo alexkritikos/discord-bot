@@ -27,7 +27,7 @@ load_dotenv()
 
 load_dotenv()
 
-@bot.command(name="list_audio")
+@bot.command()
 async def list_audio(ctx):
   await ctx.send("Here is a list of the available audio files:\n\t" 
                  + "\n\t".join(os.listdir("./audio")) 
@@ -42,8 +42,29 @@ async def play(ctx, arg):
   else:
     channel = ctx.message.author.voice.channel
     voice = await channel.connect()
-    source = FFmpegPCMAudio("audio/" + arg)
+    source = FFmpegPCMAudio("./audio/" + arg)
     voice.play(source)
+
+@bot.command()
+async def pause(ctx):
+  voice = discord.utils.get(bot.voice_clients, guild=ctx.guild)
+  if voice.is_playing():
+    voice.pause()
+  else:
+    await ctx.send("There is no audio to pause right now.")
+
+@bot.command()
+async def resume(ctx):
+  voice = discord.utils.get(bot.voice_clients, guild=ctx.guild)
+  if voice.is_paused():
+    voice.resume()
+  else:
+    await ctx.send("There is no paused audio right now.")
+
+@bot.command()
+async def stop(ctx):
+  voice = discord.utils.get(bot.voice_clients, guild=ctx.guild)
+  voice.stop()
 
 @bot.command(name="dismiss_stalker")
 async def leave(ctx):
