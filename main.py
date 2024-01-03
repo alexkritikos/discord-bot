@@ -27,6 +27,19 @@ load_dotenv()
 
 load_dotenv()
 
+@bot.command()
+async def play(ctx, arg):
+  if not ctx.message.author.voice:
+    await ctx.send("My apologies master {}, but you must be in a voice channel so that I can join you.".format(ctx.message.author.name))
+    return
+  else:
+    channel = ctx.message.author.voice.channel
+    voice = await channel.connect()
+    # source = FFmpegPCMAudio("ΕΞΑΛΛΟΣ ΣΤΑΜΕΛΟΣ.wma")
+    # source = FFmpegPCMAudio("TZELO'S HOBBIES.wma")
+    source = FFmpegPCMAudio(arg)
+    player = voice.play(source)
+
 @bot.command(name="summon_stalker")
 async def join(ctx):
   print(ctx.command)
