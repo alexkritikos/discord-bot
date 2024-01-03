@@ -66,7 +66,7 @@ async def stop(ctx):
   voice = discord.utils.get(bot.voice_clients, guild=ctx.guild)
   voice.stop()
 
-@bot.command(name="dismiss_stalker")
+@bot.command()
 async def leave(ctx):
   if ctx.voice_client:
     await ctx.guild.voice_client.disconnect()
