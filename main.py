@@ -93,6 +93,9 @@ async def on_message(message):
   # lower case message
   message_content = message.content.lower()  
   
+  if "free" in message_content and message.channel.id == 1190706436683071648: #free-games
+    await message.add_reaction("\U0001F42D")
+
   if message_content.startswith(f"{bot.user.mention} $help"):
     await message.channel.send(utils.to_multi_line_text("help.txt"))
 
