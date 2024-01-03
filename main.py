@@ -16,7 +16,7 @@ intents.members = True
 
 # instantiate discord client 
 client = discord.Client(intents=intents)
-bot = commands.Bot(command_prefix='$',intents=intents)
+bot = commands.Bot(command_prefix='$', intents=intents)
 newsapi = NewsApiClient(api_key=os.getenv("NEWS_API_KEY"))
 
 '''
@@ -31,7 +31,7 @@ load_dotenv()
 async def list_audio(ctx):
   await ctx.send("Here is a list of the available audio files:\n\t" 
                  + "\n\t".join(os.listdir("./audio")) 
-                 + "\n To play a file, copy-paste a file name from above and type:\n"
+                 + "\nTo play a file, copy-paste a file name from above and type:\n"
                  + "$play <song-name>")
 
 @bot.command()
