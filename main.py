@@ -76,6 +76,7 @@ async def leave(ctx):
 # discord event to check when the bot is online 
 @bot.event
 async def on_ready():
+  await bot.change_presence(activity=discord.Game("NieR: Automata™"))
   print(f"{bot.user} is now online!")
 
 @bot.event
