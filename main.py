@@ -37,12 +37,12 @@ async def check_all_members():
   bots = list(filter(utils.filter_bots, guild.members))
   channel = get(guild.channels, id=1192792733039996938) # Ψυχολογικά όντα
   amount = (MembersInServerCount - len(bots))
-  prevtname = str(f'{str("Ψυχολογικά όντα: ")}{amount}')
+  prevtname = str(f'{str("Ψυχές: ")}{amount}')
   tname = channel.name
   if prevtname == tname:
       pass
   elif prevtname != tname:
-      await channel.edit(name=f'{str("Ψυχολογικά όντα: ")}{amount}')
+      await channel.edit(name=f'{str("Ψυχές: ")}{amount}')
 
 @bot.command()
 async def list_audio(ctx):
