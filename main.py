@@ -32,17 +32,18 @@ load_dotenv()
 
 @loop(seconds=30)
 async def check_all_members():
+  print("check_all_members")
   guild = bot.get_guild(1140325411126005901) # Koutokomia
   MembersInServerCount = len(guild.members)
   bots = list(filter(utils.filter_bots, guild.members))
   channel = get(guild.channels, id=1192792733039996938) # Ψυχολογικά όντα
   amount = (MembersInServerCount - len(bots))
-  prevtname = str(f'{str("Ψυχές: ")}{amount}')
+  prevtname = str(f'{str("Souls: ")}{amount}')
   tname = channel.name
   if prevtname == tname:
-      pass
+    pass
   elif prevtname != tname:
-      await channel.edit(name=f'{str("Ψυχές: ")}{amount}')
+    await channel.edit(name=f'{str("Souls: ")}{amount}')
 
 @bot.command()
 async def list_audio(ctx):
@@ -93,7 +94,7 @@ async def leave(ctx):
 # discord event to check when the bot is online 
 @bot.event
 async def on_ready():
-  await bot.change_presence(activity=discord.Game("NieR: Automata™"))
+  await bot.change_presence(activity=discord.Game("NieR:Automata™"))
   check_all_members.start()
   await asyncio.sleep(1)
   print(f"{bot.user} is now online!")
