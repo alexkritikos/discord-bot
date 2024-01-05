@@ -4,7 +4,9 @@ import random
 import utils
 
 from discord.ext import commands
+from discord.ext.tasks import loop
 from discord import FFmpegPCMAudio
+from discord.utils import get
 from dotenv import load_dotenv
 from newsapi import NewsApiClient
 from datetime import date, timedelta
@@ -26,6 +28,19 @@ load_dotenv()
 '''
 
 load_dotenv()
+
+@loop(seconds=30)
+async def check_all_members():
+  guild = bot.get_guild(1140325411126005901) # Koutokomia
+  MembersInServerCount = len(guild.members)
+  channel = get(guild.channels, id=1192792733039996938) # Ψυχολογικά όντα
+  amount = (MembersInServerCount)
+  prevtname = str(f'{str("All Members: ")}{amount}')
+  tname = channel.name
+  if prevtname == tname:
+      pass
+  elif prevtname != tname:
+      await channel.edit(name=f'{str("All Members: ")}{amount}')
 
 @bot.command()
 async def list_audio(ctx):
