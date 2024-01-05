@@ -2,6 +2,7 @@ import discord
 import os
 import random
 import utils
+import asyncio
 
 from discord.ext import commands
 from discord.ext.tasks import loop
@@ -92,6 +93,8 @@ async def leave(ctx):
 @bot.event
 async def on_ready():
   await bot.change_presence(activity=discord.Game("NieR: Automata™"))
+  check_all_members.start()
+  await asyncio.sleep(1)
   print(f"{bot.user} is now online!")
 
 @bot.event
