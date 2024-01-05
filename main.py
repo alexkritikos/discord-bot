@@ -34,7 +34,7 @@ load_dotenv()
 async def check_all_members():
   guild = bot.get_guild(1140325411126005901) # Koutokomia
   MembersInServerCount = len(guild.members)
-  bots = list(filter(utils.filter_bots, MembersInServerCount))
+  bots = list(filter(utils.filter_bots, guild.members))
   channel = get(guild.channels, id=1192792733039996938) # Ψυχολογικά όντα
   amount = (MembersInServerCount - len(bots))
   prevtname = str(f'{str("Ψυχολογικά όντα: ")}{amount}')
