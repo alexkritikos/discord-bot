@@ -32,7 +32,6 @@ load_dotenv()
 
 @loop(seconds=30)
 async def check_all_members():
-  print("check_all_members")
   guild = bot.get_guild(1140325411126005901) # Koutokomia
   MembersInServerCount = len(guild.members)
   bots = list(filter(utils.filter_bots, guild.members))
