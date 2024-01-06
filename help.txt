@@ -1,6 +1,6 @@
-I can offer you the following services:
-$help -> Shows the message you are looking at right now
-$greet -> Feel free to greet me whenever you like
-$fact -> I will tell you a random fact about our beloved Grimes
-$retrieve -> I will give you the latest news on c
-$real_name -> Shows Grimes' real name
+Μπορώ να σου προσφέρω τις ακόλουθες λειτουργίες:
+$help -> Δείχνει το μήνυμα που διαβάζεις αυτή τη στιγμή
+$greet -> Όποτε επιθυμείς μπορείς να μου πεις ένα γεια
+$fact -> Θα σου πω ένα random fact για την Grimes
+$retrieve -> Θα αναρτήσω τα πιο πρόσφατα νέα για την c
+$real_name -> Δείχνει το πραγματικό όνομα της Grimes
