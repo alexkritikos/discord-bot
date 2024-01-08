@@ -10,11 +10,13 @@ REAL_NAME_COMMAND = "$real_name"
 GREET_COMMAND = "$greet"
 RETRIEVE_COMMAND = "$retrieve"
 FACT_COMMAND = "$fact"
+TZELO_COMMAND = "ζωγράφισε μου τον Τζέλο"
 
 AUDIO_DIR = "./audio"
 WELCOME_FILE = "welcome.txt"
 HELP_FILE ="help.txt"
 FACTS_FILE = "facts.txt"
+MAGIC_FILE = "magic_message.txt"
 
 MEMBER_COUNT_CHANNEL_PREFIX = "Souls: "
 MEMBER_COUNT_LOOP_SECONDS = 30
