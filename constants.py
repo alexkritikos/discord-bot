@@ -10,7 +10,7 @@ REAL_NAME_COMMAND = "$real_name"
 GREET_COMMAND = "$greet"
 RETRIEVE_COMMAND = "$retrieve"
 FACT_COMMAND = "$fact"
-TZELO_COMMAND = "ζωγράφισε μου τον Τζέλο"
+TZELO_COMMAND = "$tzelo"
 
 AUDIO_DIR = "./audio"
 WELCOME_FILE = "welcome.txt"
