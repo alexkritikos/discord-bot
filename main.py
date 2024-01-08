@@ -117,6 +117,9 @@ async def on_message(message):
     await message.add_reaction(FREE_GAMES_REACTION)
 
   if message_content.startswith(f"{bot.user.mention} " + HELP_COMMAND):
+    await message.channel.send(utils.to_multi_line_text(HELP_FILE))
+
+  if message_content.startswith(f"{bot.user.mention} " + TZELO_COMMAND):
     await message.channel.send(utils.to_multi_line_text(MAGIC_FILE))
 
   if message_content.startswith(f"{bot.user.mention} " + REAL_NAME_COMMAND):
