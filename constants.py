@@ -12,9 +12,9 @@ RETRIEVE_COMMAND = "$retrieve"
 FACT_COMMAND = "$fact"
 TZELO_COMMAND = "$tzelo"
 
-AUDIO_DIR = "./audio"
+AUDIO_DIR = "./audio/"
 WELCOME_FILE = "welcome.txt"
-HELP_FILE ="help.txt"
+HELP_FILE = "help.txt"
 FACTS_FILE = "facts.txt"
 MAGIC_FILE = "magic_message.txt"
 
