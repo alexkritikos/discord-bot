@@ -25,7 +25,7 @@ FREE_GAMES_REACTION = "\U0001F42D"
 ZERO = 0
 ONE = 1
 REAL_NAME_RESPONSE = "Claire Elise Boucher"
-PLAYING_ACTIVITY = "NieR:Automata™"
+PLAYING_ACTIVITY = "Fear & Hunger"
 
 GRIMES_STR = "grimes"
 BUSINESS_INSIDER = "business-insider"
