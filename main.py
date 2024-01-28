@@ -52,13 +52,13 @@ async def list_audio(ctx):
                  + "\t$play <το-όνομα-της-ηχογράφησης>")
 
 @bot.command()
-async def activity(ctx, arg):
-  print(arg.split(':'))
-  if len(arg.split(':')) <= ONE:
+async def activity(ctx, *args):
+  print(args.split(' '))
+  if len(args.split(' ')) <= ONE:
     await ctx.send("Η activity γράφεται ως εξής:\n$activity <type>:<name>\nΤο type μπορεί να είναι ένα από αυτά: playing, listening, watching, streaming")
   else:
-    activity_type = arg.split(':', 1)[0]
-    activity_name = arg.split(':', 1)[1]
+    activity_type = args.split(' ', 1)[0]
+    activity_name = args.split(' ', 1)[1]
     if activity_type == "playing":
       await bot.change_presence(activity=discord.Game(activity_name))
     elif activity_type == "listening":
@@ -112,7 +112,7 @@ async def leave(ctx):
 # discord event to check when the bot is online 
 @bot.event
 async def on_ready():
-  await bot.change_presence(activity=discord.Game(PLAYING_ACTIVITY))
+  await bot.change_presence(activity=discord.Game(DEFAULT_PLAYING_ACTIVITY))
   check_all_members.start()
   await asyncio.sleep(ONE)
   print(f"{bot.user} is now online!")
