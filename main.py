@@ -53,7 +53,7 @@ async def list_audio(ctx):
 
 @bot.command()
 async def activity(ctx, arg):
-  if len(arg.split()) <= ONE:
+  if len(arg.split(' ')) <= ONE:
     await ctx.send("Η activity γράφεται ως εξής:\n$activity <type> <name>\nΤο type μπορεί να είναι ένα από αυτά: playing, listening, watching, streaming")
   else:
     activity_type = arg.split(' ', 1)[0]
