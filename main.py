@@ -58,17 +58,16 @@ async def activity(ctx, arg):
   else:
     activity_type = arg.split(' ', 1)[0]
     activity_name = arg.split(' ', 1)[1]
-    match activity_type:
-      case "playing":
-        await bot.change_presence(activity=discord.Game(activity_name))
-      case "listening":
-        await bot.change_presence(activity=discord.Activity(type=discord.ActivityType.listening, name=activity_name))
-      case "watching":
-        await bot.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name=activity_name))
-      case "streaming":
-        await bot.change_presence(activity=discord.Streaming(name=activity_name, url=TWITCH_URL))
-      case _:
-        await ctx.send("To type το έλουσες λιγάκι. Το type μπορεί να είναι ένα από αυτά: playing, listening, watching, streaming")
+    if activity_type == "playing":
+      await bot.change_presence(activity=discord.Game(activity_name))
+    elif activity_type == "listening":
+      await bot.change_presence(activity=discord.Activity(type=discord.ActivityType.listening, name=activity_name))
+    elif activity_type == "watching":
+      await bot.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name=activity_name))
+    elif activity_type == "streaming":
+      await bot.change_presence(activity=discord.Streaming(name=activity_name, url=TWITCH_URL))
+    else:
+      await ctx.send("To type το έλουσες λιγάκι. Το type μπορεί να είναι ένα από αυτά: playing, listening, watching, streaming")
 
 @bot.command()
 async def play(ctx, arg):
