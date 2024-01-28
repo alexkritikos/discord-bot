@@ -53,11 +53,11 @@ async def list_audio(ctx):
 
 @bot.command()
 async def activity(ctx, *args):
-  print(args)
-  if len(args.split(' ')) <= ONE:
+  print(args[1:])
+  if len(args) <= ONE:
     await ctx.send("Η activity γράφεται ως εξής:\n$activity <type>:<name>\nΤο type μπορεί να είναι ένα από αυτά: playing, listening, watching, streaming")
   else:
-    activity_type = args.split(' ', 1)[0]
+    activity_type = args[0]
     activity_name = args.split(' ', 1)[1]
     if activity_type == "playing":
       await bot.change_presence(activity=discord.Game(activity_name))
