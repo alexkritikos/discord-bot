@@ -53,7 +53,7 @@ async def list_audio(ctx):
 
 @bot.command()
 async def activity(ctx, arg):
-  if len(arg.split()) <= 1:
+  if len(arg.split()) <= ONE:
     await ctx.send("Η activity γράφεται ως εξής:\n$activity <type> <name>\nΤο type μπορεί να είναι ένα από αυτά: playing, listening, watching, streaming")
   else:
     activity_type = arg.split(' ', 1)[0]
@@ -67,6 +67,8 @@ async def activity(ctx, arg):
         await bot.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name=activity_name))
       case "streaming":
         await bot.change_presence(activity=discord.Streaming(name=activity_name, url=TWITCH_URL))
+      case _:
+        await ctx.send("To type το έλουσες λιγάκι. Το type μπορεί να είναι ένα από αυτά: playing, listening, watching, streaming")
 
 @bot.command()
 async def play(ctx, arg):
