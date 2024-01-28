@@ -58,7 +58,7 @@ async def activity(ctx, *args):
     await ctx.send("Η activity γράφεται ως εξής:\n$activity <type>:<name>\nΤο type μπορεί να είναι ένα από αυτά: playing, listening, watching, streaming")
   else:
     activity_type = args[0]
-    activity_name = args.split(' ', 1)[1]
+    activity_name = ' '.join(args[1:])
     if activity_type == "playing":
       await bot.change_presence(activity=discord.Game(activity_name))
     elif activity_type == "listening":
