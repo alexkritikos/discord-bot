@@ -52,6 +52,23 @@ async def list_audio(ctx):
                  + "\t$play <το-όνομα-της-ηχογράφησης>")
 
 @bot.command()
+async def activity(ctx, arg):
+  if len(arg.split()) <= 1:
+    await ctx.send("Η activity γράφεται ως εξής:\n$activity <type> <name>\nΤο type μπορεί να είναι ένα από αυτά: playing, listening, watching, streaming")
+  else:
+    activity_type = arg.split(' ', 1)[0]
+    activity_name = arg.split(' ', 1)[1]
+    match activity_type:
+      case "playing":
+        await bot.change_presence(activity=discord.Game(activity_name))
+      case "listening":
+        await bot.change_presence(activity=discord.Activity(type=discord.ActivityType.listening, name=activity_name))
+      case "watching":
+        await bot.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name=activity_name))
+      case "streaming":
+        await bot.change_presence(activity=discord.Streaming(name=activity_name, url=TWITCH_URL))
+
+@bot.command()
 async def play(ctx, arg):
   if not ctx.message.author.voice:
     await ctx.send("Ζητώ συγνώμη δάσκαλε {}, αλλά πρέπει να είσαι σε voice channel για να κάνω join.".format(ctx.message.author.name))
