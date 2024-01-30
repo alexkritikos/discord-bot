@@ -24,6 +24,7 @@ FREE_STR = "free"
 FREE_GAMES_REACTION = "\U0001F42D"
 ZERO = 0
 ONE = 1
+SINGLE_SPACE = ' '
 REAL_NAME_RESPONSE = "Claire Elise Boucher"
 DEFAULT_PLAYING_ACTIVITY = "FINAL FANTASY XIV Online"
 
@@ -34,3 +35,8 @@ ARTICLES = "articles"
 TITLE = "title"
 URL_STR = "url"
 TWITCH_URL = "https://www.twitch.tv/kritibomb"
+
+PLAYING = "playing"
+LISTENING = "listening"
+WATCHING = "watching"
+STREAMING = "streaming"

@@ -52,25 +52,6 @@ async def list_audio(ctx):
                  + "\t$play <το-όνομα-της-ηχογράφησης>")
 
 @bot.command()
-async def activity(ctx, *args):
-  print(args[1:])
-  if len(args) <= ONE:
-    await ctx.send("Η activity γράφεται ως εξής:\n$activity <type>:<name>\nΤο type μπορεί να είναι ένα από αυτά: playing, listening, watching, streaming")
-  else:
-    activity_type = args[0]
-    activity_name = ' '.join(args[1:])
-    if activity_type == "playing":
-      await bot.change_presence(activity=discord.Game(activity_name))
-    elif activity_type == "listening":
-      await bot.change_presence(activity=discord.Activity(type=discord.ActivityType.listening, name=activity_name))
-    elif activity_type == "watching":
-      await bot.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name=activity_name))
-    elif activity_type == "streaming":
-      await bot.change_presence(activity=discord.Streaming(name=activity_name, url=TWITCH_URL))
-    else:
-      await ctx.send("To type το έλουσες λιγάκι. Το type μπορεί να είναι ένα από αυτά: playing, listening, watching, streaming")
-
-@bot.command()
 async def play(ctx, arg):
   if not ctx.message.author.voice:
     await ctx.send("Ζητώ συγνώμη δάσκαλε {}, αλλά πρέπει να είσαι σε voice channel για να κάνω join.".format(ctx.message.author.name))
@@ -103,11 +84,38 @@ async def stop(ctx):
   voice.stop()
 
 @bot.command()
+async def join(ctx):
+  if not ctx.message.author.voice:
+    await ctx.send("Ζητώ συγνώμη δάσκαλε {}, αλλά πρέπει να είσαι σε voice channel για να κάνω join.".format(ctx.message.author.name))
+    return
+  else:
+    channel = ctx.message.author.voice.channel
+    await channel.connect()
+
+@bot.command()
 async def leave(ctx):
   if ctx.voice_client:
     await ctx.guild.voice_client.disconnect()
   else:
     await ctx.send("Δεν θέλω να σε προσβάλω δάσκαλε {}, αλλά φαίνεται ότι βλέπεις παραισθήσεις, επειδή δεν είμαι σε voice channel αυτή τη στιγμή.".format(ctx.message.author.name))
+
+@bot.command()
+async def activity(ctx, *args):
+  if len(args) <= ONE:
+    await ctx.send("Η activity εντολή γράφεται ως εξής:\n$activity <type> <name>\nΤο type μπορεί να είναι ένα από αυτά: playing, listening, watching, streaming")
+  else:
+    activity_type = args[0]
+    activity_name = SINGLE_SPACE.join(args[1:])
+    if activity_type == PLAYING:
+      await bot.change_presence(activity=discord.Game(activity_name))
+    elif activity_type == LISTENING:
+      await bot.change_presence(activity=discord.Activity(type=discord.ActivityType.listening, name=activity_name))
+    elif activity_type == WATCHING:
+      await bot.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name=activity_name))
+    elif activity_type == STREAMING:
+      await bot.change_presence(activity=discord.Streaming(name=activity_name, url=TWITCH_URL))
+    else:
+      await ctx.send("To type το έλουσες λιγάκι. Το type μπορεί να είναι ένα από αυτά: playing, listening, watching, streaming")
 
 # discord event to check when the bot is online 
 @bot.event
