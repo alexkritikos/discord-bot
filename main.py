@@ -108,16 +108,20 @@ async def activity(ctx, *args):
     activity_name = SINGLE_SPACE.join(args[1:])
     if activity_type == PLAYING:
       await bot.change_presence(activity=discord.Game(activity_name))
-      utils.set_activity_env_vars(activity_type, activity_name)
+      os.environ['ACTIVITY_TYPE'] = activity_type
+      os.environ['ACTIVITY_NAME'] = activity_name
     elif activity_type == LISTENING:
       await bot.change_presence(activity=discord.Activity(type=discord.ActivityType.listening, name=activity_name))
-      utils.set_activity_env_vars(activity_type, activity_name)
+      os.environ['ACTIVITY_TYPE'] = activity_type
+      os.environ['ACTIVITY_NAME'] = activity_name
     elif activity_type == WATCHING:
       await bot.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name=activity_name))
-      utils.set_activity_env_vars(activity_type, activity_name)
+      os.environ['ACTIVITY_TYPE'] = activity_type
+      os.environ['ACTIVITY_NAME'] = activity_name
     elif activity_type == STREAMING:
       await bot.change_presence(activity=discord.Streaming(name=activity_name, url=TWITCH_URL))
-      utils.set_activity_env_vars(activity_type, activity_name)
+      os.environ['ACTIVITY_TYPE'] = activity_type
+      os.environ['ACTIVITY_NAME'] = activity_name
     else:
       await ctx.send("To type το έλουσες λιγάκι. Το type μπορεί να είναι ένα από αυτά: playing, listening, watching, streaming")
 
