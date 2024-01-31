@@ -108,19 +108,32 @@ async def activity(ctx, *args):
     activity_name = SINGLE_SPACE.join(args[1:])
     if activity_type == PLAYING:
       await bot.change_presence(activity=discord.Game(activity_name))
+      utils.set_activity_env_vars(activity_type, activity_name)
     elif activity_type == LISTENING:
       await bot.change_presence(activity=discord.Activity(type=discord.ActivityType.listening, name=activity_name))
+      utils.set_activity_env_vars(activity_type, activity_name)
     elif activity_type == WATCHING:
       await bot.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name=activity_name))
+      utils.set_activity_env_vars(activity_type, activity_name)
     elif activity_type == STREAMING:
       await bot.change_presence(activity=discord.Streaming(name=activity_name, url=TWITCH_URL))
+      utils.set_activity_env_vars(activity_type, activity_name)
     else:
       await ctx.send("To type το έλουσες λιγάκι. Το type μπορεί να είναι ένα από αυτά: playing, listening, watching, streaming")
 
 # discord event to check when the bot is online 
 @bot.event
 async def on_ready():
-  await bot.change_presence(activity=discord.Game(DEFAULT_PLAYING_ACTIVITY))
+  activity_type = os.environ.get("ACTIVITY_TYPE")
+  activity_name = os.environ.get("ACTIVITY_NAME")
+  if activity_type == PLAYING:
+    await bot.change_presence(activity=discord.Game(activity_name))
+  elif activity_type == LISTENING:
+    await bot.change_presence(activity=discord.Activity(type=discord.ActivityType.listening, name=activity_name))
+  elif activity_type == WATCHING:
+    await bot.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name=activity_name))
+  elif activity_type == STREAMING:
+    await bot.change_presence(activity=discord.Streaming(name=activity_name, url=TWITCH_URL))
   check_all_members.start()
   await asyncio.sleep(ONE)
   print(f"{bot.user} is now online!")
