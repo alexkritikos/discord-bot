@@ -124,8 +124,8 @@ async def activity(ctx, *args):
 # discord event to check when the bot is online 
 @bot.event
 async def on_ready():
-  activity_type = os.environ.get("ACTIVITY_TYPE")
-  activity_name = os.environ.get("ACTIVITY_NAME")
+  activity_type = os.environ.get('ACTIVITY_TYPE')
+  activity_name = os.environ.get('ACTIVITY_NAME')
   if activity_type == PLAYING:
     await bot.change_presence(activity=discord.Game(activity_name))
   elif activity_type == LISTENING:

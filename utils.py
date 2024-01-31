@@ -13,5 +13,5 @@ def filter_bots(member):
     return member.bot
 
 def set_activity_env_vars(activity_type, activity_name):
-    os.environ["ACTIVITY_TYPE"] = activity_type
-    os.environ["ACTIVITY_NAME"] = activity_name
+    os.environ['ACTIVITY_TYPE'] = activity_type
+    os.environ['ACTIVITY_NAME'] = activity_name
