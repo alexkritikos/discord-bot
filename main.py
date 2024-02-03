@@ -145,16 +145,17 @@ async def on_ready():
 async def on_member_join(member):
   channel = bot.get_channel(SYSTEM_CHANNEL_ID)
 
+  file = discord.File("./", filename="discord-logo.png")
   embed = discord.Embed(title="Καλώς όρισες στα Κουτοκομεία!", description=f"{member.mention} " + utils.to_multi_line_text(WELCOME_FILE), colour=discord.Colour.blurple())
   embed.set_author(name=f"{member.name}", icon_url=f"{member.display_avatar}")
   embed.add_field(name="Server rules", value="<#1155619305082327052>")
   embed.add_field(name="Για ψυχαγωγία", value="<#1140325411587375165>")
   embed.add_field(name="Gaming Content", value="<#1190913998091206727>")
+  embed.set_image(url="attachment://discord-logo.png")
   # TODO: Uncomment when artwork is ready
-  # embed.set_image(url="https://cdnb.artstation.com/p/assets/images/images/032/478/085/large/matthew-ctrl-kaine-artstation.jpg?1606567856")
   # embed.set_footer(text=f"Artwork by someone")
 
-  await channel.send(embed=embed)
+  await channel.send(file=file, embed=embed)
 
 @bot.event
 async def on_message(message): 
