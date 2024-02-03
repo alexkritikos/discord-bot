@@ -128,7 +128,7 @@ async def embed(ctx):
   embed.add_field(name="Server rules", value="<#1155619305082327052>")
   embed.add_field(name="Main Voice Channel", value="<#1140325411587375165>")
   embed.add_field(name="Gaming Content", value="<#1190913998091206727>")
-  embed.set_thumbnail(url="https://cdna.artstation.com/p/assets/images/images/011/257/082/4k/wizix-hair-presa.jpg?1528646197")
+  embed.set_image(url="https://cdna.artstation.com/p/assets/images/images/011/257/082/4k/wizix-hair-presa.jpg?1528646197")
   embed.set_footer(text=f"Artwork by {name}")
 
   await ctx.send(embed=embed)
