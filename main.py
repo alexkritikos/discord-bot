@@ -145,7 +145,7 @@ async def on_ready():
 async def on_member_join(member):
   channel = bot.get_channel(SYSTEM_CHANNEL_ID)
 
-  file = discord.File("./", filename="discord-logo.png")
+  file = discord.File("./discord-logo.png", filename="discord-logo.png")
   embed = discord.Embed(title="Καλώς όρισες στα Κουτοκομεία!", description=f"{member.mention} " + utils.to_multi_line_text(WELCOME_FILE), colour=discord.Colour.blurple())
   embed.set_author(name=f"{member.name}", icon_url=f"{member.display_avatar}")
   embed.add_field(name="Server rules", value="<#1155619305082327052>")
