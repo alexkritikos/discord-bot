@@ -123,13 +123,21 @@ async def embed(ctx):
   name = member.display_name
   profile_pic = member. display_avatar
 
-  embed = discord.Embed(title="Καλώς όρισες!", description="Έλα τσακαλάκι μου, που είσαι; Αν μπήκες εδώ για να παίξεις κάποιον ρόλο στην πόλη του Voodoo ή για να τσακωθείς για τα πολιτικά, τότε σε καλωσορίζουμε στα Κουτοκομεία! Ξεκινώντας με την ΑΒ του server, σε παρακαλούμε να διαβάσεις ΠΡΟ-ΣΕ-ΚΤΙ-ΚΑ τα <#1155619305082327052> μας. Και περνάμε στο ψητό, μπες στο voice channel <#1140325411587375165> για να σε ψυχαγωγήσουμε όσο και το αγαπημένο σου videogame (btw γράψε μας ποιο είναι αυτό στο κανάλι <#1190913998091206727>). P.S. μην τα βάλεις με τον darth peri γιατί θα σε δαγκώσει. Φιλιά!", colour=discord.Colour.random())
-  embed.set_author(name=f"{name}", icon_url=f"{profile_pic}")
+  # embed = discord.Embed(title="Καλώς όρισες στα Κουτοκομεία!", description="Έλα τσακαλάκι μου, που είσαι; Αν μπήκες εδώ για να παίξεις κάποιον ρόλο στην πόλη του Voodoo ή για να τσακωθείς για τα πολιτικά, τότε σε καλωσορίζουμε στον πιο καυλάντικο server!\nP.S. μην τα βάλεις με τον darth peri γιατί θα σε δαγκώσει. Φιλιά!", colour=discord.Colour.random())
+  # embed.set_author(name=f"{name}", icon_url=f"{profile_pic}")
+  # embed.add_field(name="Server rules", value="<#1155619305082327052>")
+  # embed.add_field(name="Για ψυχαγωγία", value="<#1140325411587375165>")
+  # embed.add_field(name="Gaming Content", value="<#1190913998091206727>")
+  # embed.set_image(url="https://cdnb.artstation.com/p/assets/images/images/032/478/085/large/matthew-ctrl-kaine-artstation.jpg?1606567856")
+  # embed.set_footer(text=f"Artwork by {name}")
+
+  embed = discord.Embed(title="Welcome", description="Welcome to our server! This is a welcome message.", colour=discord.Colour.random())
+  embed.set_author(name="New member name", icon_url=f"{profile_pic}")
   embed.add_field(name="Server rules", value="<#1155619305082327052>")
-  embed.add_field(name="Για ψυχαγωγία", value="<#1140325411587375165>")
+  embed.add_field(name="Main Voice Channel", value="Main Voice Channel Link")
   embed.add_field(name="Gaming Content", value="<#1190913998091206727>")
   embed.set_image(url="https://cdnb.artstation.com/p/assets/images/images/032/478/085/large/matthew-ctrl-kaine-artstation.jpg?1606567856")
-  embed.set_footer(text=f"Artwork by {name}")
+  embed.set_footer(text=f"Artwork by Natz.fur")
 
   await ctx.send(embed=embed)
 
