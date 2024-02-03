@@ -123,15 +123,15 @@ async def embed(ctx):
   name = member.display_name
   profile_pic = member.display_avatar
 
-  embed = discord.Embed(title="Καλώς όρισες στα Κουτοκομεία!", description="Έλα τσακαλάκι μου, που είσαι; Αν μπήκες εδώ για να παίξεις κάποιον ρόλο στην πόλη του Voodoo ή για να τσακωθείς για τα πολιτικά, τότε σε καλωσορίζουμε στον πιο καυλάντικο server!\nP.S. μην τα βάλεις με τον darth peri γιατί θα σε δαγκώσει. Φιλιά!", colour=discord.Colour.random())
-  embed.set_author(name=f"{name}", icon_url=f"{profile_pic}")
+  file = discord.File("./server-logo-late-2023.jpg", filename="server-logo-late-2023.jpg")
+  embed = discord.Embed(title="Καλώς όρισες στα Κουτοκομεία!", description=f"{member.mention} " + utils.to_multi_line_text(WELCOME_FILE), colour=discord.Colour.blurple())
+  embed.set_author(name=f"{member.name}", icon_url=f"{member.display_avatar}")
   embed.add_field(name="Server rules", value="<#1155619305082327052>")
   embed.add_field(name="Για ψυχαγωγία", value="<#1140325411587375165>")
   embed.add_field(name="Gaming Content", value="<#1190913998091206727>")
-  embed.set_image(url="https://cdnb.artstation.com/p/assets/images/images/032/478/085/large/matthew-ctrl-kaine-artstation.jpg?1606567856")
-  embed.set_footer(text=f"Artwork by {name}")
+  embed.set_image(url="attachment://server-logo-late-2023.jpg")
 
-  await ctx.send(embed=embed)
+  await ctx.send(file=file, embed=embed)
 
 # discord event to check when the bot is online 
 @bot.event
@@ -145,13 +145,13 @@ async def on_ready():
 async def on_member_join(member):
   channel = bot.get_channel(SYSTEM_CHANNEL_ID)
 
-  file = discord.File("./discord-logo.png", filename="discord-logo.png")
+  file = discord.File("./server-logo-late-2023.jpg", filename="server-logo-late-2023.jpg")
   embed = discord.Embed(title="Καλώς όρισες στα Κουτοκομεία!", description=f"{member.mention} " + utils.to_multi_line_text(WELCOME_FILE), colour=discord.Colour.blurple())
   embed.set_author(name=f"{member.name}", icon_url=f"{member.display_avatar}")
   embed.add_field(name="Server rules", value="<#1155619305082327052>")
   embed.add_field(name="Για ψυχαγωγία", value="<#1140325411587375165>")
   embed.add_field(name="Gaming Content", value="<#1190913998091206727>")
-  embed.set_image(url="attachment://discord-logo.png")
+  embed.set_image(url="attachment://server-logo-late-2023.jpg")
   # TODO: Uncomment when artwork is ready
   # embed.set_footer(text=f"Artwork by someone")
 
