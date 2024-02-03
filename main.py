@@ -146,7 +146,7 @@ async def on_member_join(member):
   channel = bot.get_channel(SYSTEM_CHANNEL_ID)
 
   embed = discord.Embed(title=f"{member.mention} Καλώς όρισες στα Κουτοκομεία!", description="Έλα τσακαλάκι μου, που είσαι; Αν μπήκες εδώ για να παίξεις κάποιον ρόλο στην πόλη του Voodoo ή για να τσακωθείς για τα πολιτικά, τότε σε καλωσορίζουμε στον πιο καυλάντικο server!\nP.S. μην τα βάλεις με τον darth peri γιατί θα σε δαγκώσει. Φιλιά!", colour=discord.Colour.random())
-  embed.set_author(name=f"{member.name}", icon_url=f"{profile_pic}")
+  embed.set_author(name=f"{member.name}", icon_url=f"{member.avatar}")
   embed.add_field(name="Server rules", value="<#1155619305082327052>")
   embed.add_field(name="Για ψυχαγωγία", value="<#1140325411587375165>")
   embed.add_field(name="Gaming Content", value="<#1190913998091206727>")
