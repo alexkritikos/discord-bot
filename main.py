@@ -120,8 +120,6 @@ async def activity(ctx, *args):
 @bot.command()
 async def embed(ctx):
   member = ctx.author
-  name = member.display_name
-  profile_pic = member.display_avatar
 
   file = discord.File("./server-logo-late-2023.jpg", filename="server-logo-late-2023.jpg")
   embed = discord.Embed(title="Καλώς όρισες στα Κουτοκομεία!", description=f"{member.mention} " + utils.to_multi_line_text(WELCOME_FILE), colour=discord.Colour.blurple())
