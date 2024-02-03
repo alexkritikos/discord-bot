@@ -108,38 +108,37 @@ async def activity(ctx, *args):
     activity_name = SINGLE_SPACE.join(args[1:])
     if activity_type == PLAYING:
       await bot.change_presence(activity=discord.Game(activity_name))
-      os.environ['ACTIVITY_TYPE'] = activity_type
-      os.environ['ACTIVITY_NAME'] = activity_name
     elif activity_type == LISTENING:
       await bot.change_presence(activity=discord.Activity(type=discord.ActivityType.listening, name=activity_name))
-      os.environ['ACTIVITY_TYPE'] = activity_type
-      os.environ['ACTIVITY_NAME'] = activity_name
     elif activity_type == WATCHING:
       await bot.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name=activity_name))
-      os.environ['ACTIVITY_TYPE'] = activity_type
-      os.environ['ACTIVITY_NAME'] = activity_name
     elif activity_type == STREAMING:
       await bot.change_presence(activity=discord.Streaming(name=activity_name, url=TWITCH_URL))
-      os.environ['ACTIVITY_TYPE'] = activity_type
-      os.environ['ACTIVITY_NAME'] = activity_name
     else:
       await ctx.send("To type το έλουσες λιγάκι. Το type μπορεί να είναι ένα από αυτά: playing, listening, watching, streaming")
+
+@bot.command()
+async def embed(ctx):
+  member = ctx.author
+  name = member.display_name
+  profile_pic = member. display_avatar
+
+  embed = discord.Embed(title="Custom embed title", description="This is the embed description", colour=discord.Colour.dark_grey)
+  embed.set_author(name=f"{name}", url="https://www.twitch.tv/kritibomb", icon_url="https://cdna.artstation.com/p/assets/images/images/011/257/082/4k/wizix-hair-presa.jpg?1528646197")
+  embed.set_thumbnail(url=f"{profile_pic}")
+  embed.add_field(name="Field 1", value="Field 1 value")
+  embed.add_field(name="Field 2", value="Field 2 value")
+  embed.add_field(name="Field 3", value="Field 3 value")
+  embed.set_footer(text=f"By {name}")
+
+  await ctx.send(embed=embed)
 
 # discord event to check when the bot is online 
 @bot.event
 async def on_ready():
-  activity_type = os.environ.get('ACTIVITY_TYPE')
-  activity_name = os.environ.get('ACTIVITY_NAME')
-  if activity_type == PLAYING:
-    await bot.change_presence(activity=discord.Game(activity_name))
-  elif activity_type == LISTENING:
-    await bot.change_presence(activity=discord.Activity(type=discord.ActivityType.listening, name=activity_name))
-  elif activity_type == WATCHING:
-    await bot.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name=activity_name))
-  elif activity_type == STREAMING:
-    await bot.change_presence(activity=discord.Streaming(name=activity_name, url=TWITCH_URL))
   check_all_members.start()
   await asyncio.sleep(ONE)
+  await bot.change_presence(activity=discord.Game(DEFAULT_PLAYING_ACTIVITY))
   print(f"{bot.user} is now online!")
 
 @bot.event
