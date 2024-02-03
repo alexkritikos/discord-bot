@@ -121,23 +121,15 @@ async def activity(ctx, *args):
 async def embed(ctx):
   member = ctx.author
   name = member.display_name
-  profile_pic = member. display_avatar
+  profile_pic = member.display_avatar
 
-  # embed = discord.Embed(title="Καλώς όρισες στα Κουτοκομεία!", description="Έλα τσακαλάκι μου, που είσαι; Αν μπήκες εδώ για να παίξεις κάποιον ρόλο στην πόλη του Voodoo ή για να τσακωθείς για τα πολιτικά, τότε σε καλωσορίζουμε στον πιο καυλάντικο server!\nP.S. μην τα βάλεις με τον darth peri γιατί θα σε δαγκώσει. Φιλιά!", colour=discord.Colour.random())
-  # embed.set_author(name=f"{name}", icon_url=f"{profile_pic}")
-  # embed.add_field(name="Server rules", value="<#1155619305082327052>")
-  # embed.add_field(name="Για ψυχαγωγία", value="<#1140325411587375165>")
-  # embed.add_field(name="Gaming Content", value="<#1190913998091206727>")
-  # embed.set_image(url="https://cdnb.artstation.com/p/assets/images/images/032/478/085/large/matthew-ctrl-kaine-artstation.jpg?1606567856")
-  # embed.set_footer(text=f"Artwork by {name}")
-
-  embed = discord.Embed(title="Welcome", description="Welcome to our server! This is a welcome message.", colour=discord.Colour.random())
-  embed.set_author(name="New member name", icon_url=f"{profile_pic}")
+  embed = discord.Embed(title="Καλώς όρισες στα Κουτοκομεία!", description="Έλα τσακαλάκι μου, που είσαι; Αν μπήκες εδώ για να παίξεις κάποιον ρόλο στην πόλη του Voodoo ή για να τσακωθείς για τα πολιτικά, τότε σε καλωσορίζουμε στον πιο καυλάντικο server!\nP.S. μην τα βάλεις με τον darth peri γιατί θα σε δαγκώσει. Φιλιά!", colour=discord.Colour.random())
+  embed.set_author(name=f"{name}", icon_url=f"{profile_pic}")
   embed.add_field(name="Server rules", value="<#1155619305082327052>")
-  embed.add_field(name="Main Voice Channel", value="Main Voice Channel Link")
+  embed.add_field(name="Για ψυχαγωγία", value="<#1140325411587375165>")
   embed.add_field(name="Gaming Content", value="<#1190913998091206727>")
   embed.set_image(url="https://cdnb.artstation.com/p/assets/images/images/032/478/085/large/matthew-ctrl-kaine-artstation.jpg?1606567856")
-  embed.set_footer(text=f"Artwork by Natz.fur")
+  embed.set_footer(text=f"Artwork by {name}")
 
   await ctx.send(embed=embed)
 
@@ -152,7 +144,16 @@ async def on_ready():
 @bot.event
 async def on_member_join(member):
   channel = bot.get_channel(SYSTEM_CHANNEL_ID)
-  await channel.send(f"{member.mention} " + utils.to_multi_line_text(WELCOME_FILE))
+
+  embed = discord.Embed(title="Καλώς όρισες στα Κουτοκομεία!", description="Έλα τσακαλάκι μου, που είσαι; Αν μπήκες εδώ για να παίξεις κάποιον ρόλο στην πόλη του Voodoo ή για να τσακωθείς για τα πολιτικά, τότε σε καλωσορίζουμε στον πιο καυλάντικο server!\nP.S. μην τα βάλεις με τον darth peri γιατί θα σε δαγκώσει. Φιλιά!", colour=discord.Colour.random())
+  embed.set_author(name=f"{member.mention}", icon_url=f"{member.display_avatar}")
+  embed.add_field(name="Server rules", value="<#1155619305082327052>")
+  embed.add_field(name="Για ψυχαγωγία", value="<#1140325411587375165>")
+  embed.add_field(name="Gaming Content", value="<#1190913998091206727>")
+  embed.set_image(url="https://cdnb.artstation.com/p/assets/images/images/032/478/085/large/matthew-ctrl-kaine-artstation.jpg?1606567856")
+  embed.set_footer(text=f"Artwork by someone")
+
+  await channel.send(embed=embed)
 
 @bot.event
 async def on_message(message): 
