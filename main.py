@@ -129,7 +129,8 @@ async def embed(ctx):
   embed.add_field(name="Server rules", value="<#1155619305082327052>")
   embed.add_field(name="Για ψυχαγωγία", value="<#1140325411587375165>")
   embed.add_field(name="Gaming Content", value="<#1190913998091206727>")
-  embed.set_image(url="attachment://server-logo-late-2023.jpg")
+  embed.set_thumbnail(url="attachment://server-logo-late-2023.jpg")
+  # embed.set_image(url="attachment://server-logo-late-2023.jpg")
 
   await ctx.send(file=file, embed=embed)
 
@@ -151,8 +152,9 @@ async def on_member_join(member):
   embed.add_field(name="Server rules", value="<#1155619305082327052>")
   embed.add_field(name="Για ψυχαγωγία", value="<#1140325411587375165>")
   embed.add_field(name="Gaming Content", value="<#1190913998091206727>")
-  embed.set_image(url="attachment://server-logo-late-2023.jpg")
+  embed.set_thumbnail(url="attachment://server-logo-late-2023.jpg")
   # TODO: Uncomment when artwork is ready
+  # embed.set_image(url="attachment://server-logo-late-2023.jpg")
   # embed.set_footer(text=f"Artwork by someone")
 
   await channel.send(file=file, embed=embed)
