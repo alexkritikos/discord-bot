@@ -123,7 +123,7 @@ async def embed(ctx):
   name = member.display_name
   profile_pic = member. display_avatar
 
-  embed = discord.Embed(title="Custom embed title", description="This is the embed description", colour=discord.Colour.dark_grey)
+  embed = discord.Embed(title="Custom embed title", description="This is the embed description", colour=discord.Colour.random())
   embed.set_author(name=f"{name}", url="https://www.twitch.tv/kritibomb", icon_url="https://cdna.artstation.com/p/assets/images/images/011/257/082/4k/wizix-hair-presa.jpg?1528646197")
   embed.set_thumbnail(url=f"{profile_pic}")
   embed.add_field(name="Field 1", value="Field 1 value")
