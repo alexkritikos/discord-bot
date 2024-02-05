@@ -167,12 +167,11 @@ async def on_message(message):
   # lower case message
   message_content = message.content.lower()  
   
-  if 1182973074866446368 == message.channel.id and 351087082229202955 == message.author.id:
+  if 1182973074866446368 == message.channel.id and 351087082229202955 == message.author.id and message.attachments:
     media_prefixes = [".png", ".jpg", ".mov", ".mp4"]
     for attachment in message.attachments:
       if any(prefix in attachment.filename for prefix in media_prefixes):
         await message.channel.send(f"{message.author.mention} image or video")
-    print(message)
 
   if FREE_STR in message_content and FREE_GAMES_CHANNEL_ID == message.channel.id:
     await message.add_reaction(FREE_GAMES_REACTION)
