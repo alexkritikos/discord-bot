@@ -168,6 +168,7 @@ async def on_message(message):
   message_content = message.content.lower()  
   
   if 1182973074866446368 == message.channel.id and 351087082229202955 == message.author.id and message.attachments:
+    print(message)
     media_prefixes = [".png", ".jpg", ".mov", ".mp4"]
     for attachment in message.attachments:
       if any(prefix in attachment.filename for prefix in media_prefixes):
