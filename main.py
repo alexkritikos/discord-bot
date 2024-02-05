@@ -167,6 +167,9 @@ async def on_message(message):
   # lower case message
   message_content = message.content.lower()  
   
+  if 1182973074866446368 == message.channel.id:
+    print(message)
+
   if FREE_STR in message_content and FREE_GAMES_CHANNEL_ID == message.channel.id:
     await message.add_reaction(FREE_GAMES_REACTION)
 
