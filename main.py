@@ -167,12 +167,11 @@ async def on_message(message):
   # lower case message
   message_content = message.content.lower()  
   
-  if 1182973074866446368 == message.channel.id and 351087082229202955 == message.author.id and message.attachments:
-    print(message)
+  if NOMAD_USER_ID == message.author.id and message.attachments:
     media_prefixes = [".png", ".jpg", ".mov", ".mp4"]
     for attachment in message.attachments:
       if any(prefix in attachment.filename for prefix in media_prefixes):
-        await message.channel.send(f"{message.author.mention} image or video")
+        await message.channel.send(f"Αγαπητέ \"moderator\" {message.author.mention} εντόπισα εικόνα/βίντεο στο μήνυμα σου. Βεβαιώσου ότι δεν το έλουσες πάλι και ότι το μήνυμα σου είναι στο σωστό κανάλι. Το νου σου!")
 
   if FREE_STR in message_content and FREE_GAMES_CHANNEL_ID == message.channel.id:
     await message.add_reaction(FREE_GAMES_REACTION)
