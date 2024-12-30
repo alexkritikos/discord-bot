@@ -189,8 +189,8 @@ async def on_message(message):
     await message.channel.send(f"Δάσκαλε {message.author.name}, είναι τιμή μου που σε υπηρετώ. Εκ μέρους των Δημιουργών μας, θα κάνω ό,τι καλύτερο μπορώ.")
 
   if message_content.startswith(f"{bot.user.mention} " + RETRIEVE_COMMAND):
-    news_results = newsapi.get_everything(q=GRIMES_STR,
-                                          qintitle=GRIMES_STR,
+    news_results = newsapi.get_everything(q=MY_STR,
+                                          qintitle=MY_STR,
                                           sources=BUSINESS_INSIDER,
                                           from_param=date.today() - timedelta(days=int(os.getenv("NEWS_API_DAYS_BEFORE_CURRENT"))),
                                           sort_by=PUBLISHED_AT,
@@ -198,7 +198,7 @@ async def on_message(message):
 
     if len(news_results) > ZERO:
       for article in news_results[ARTICLES]:
-        if GRIMES_STR in article[TITLE].lower():
+        if MY_STR in article[TITLE].lower():
           await message.channel.send(article[URL_STR])
     else:
       await message.channel.send(f"Ζητώ συγνώμη δάσκαλε {message.author.name}, δεν κατάφερα να βρω κάτι. Παρακαλώ δοκίμασε μερικούς κύκλους αργότερα.")
