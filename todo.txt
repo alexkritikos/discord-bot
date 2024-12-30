@@ -1,4 +1,0 @@
-1. [DONE] Add command for playing local music files in a voice channel.
-2. Schedule a job to retrieve all the members' birth dates from a file (probably csv), 
-   check if any of those dates is equal to current date and send a channel message 
-   notifying the server members about the respective user's birthday.
